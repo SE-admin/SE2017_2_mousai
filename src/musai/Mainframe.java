@@ -95,7 +95,7 @@ public class Mainframe extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setForeground(new Color(255, 255, 240));
-		panel_2.setBackground(new Color(255, 255, 240));
+		panel_2.setBackground(new Color(255, 255, 239));
 		panel_2.setBounds(5, 325, 770, 225);
 		contentPane.add(panel_2);
 
