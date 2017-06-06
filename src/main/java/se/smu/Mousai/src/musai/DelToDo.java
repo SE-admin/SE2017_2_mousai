@@ -444,6 +444,14 @@ public class DelToDo extends JFrame {
 		   }
 
 		JButton delbutton_1 = new JButton("");
+		delbutton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int count = 0;
+				 Delete dl = new Delete(conttd);
+		            dl.setVisible(true);
+			dispose();
+			}
+		});
 		delbutton_1.setIcon(new ImageIcon("buttons/KakaoTalk_20170518_191824909.png"));
 		delbutton_1.setForeground(Color.BLACK);
 		delbutton_1.setBackground(Color.WHITE);

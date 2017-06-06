@@ -230,8 +230,7 @@ public class DelLecture extends JFrame {
 		savebutton.setBackground(Color.WHITE);
 		savebutton.setBounds(99, 474, 59, 38);
 		contentPane.add(savebutton);
-		//삭제하고
-		
+
 		JButton Delbutton = new JButton("");
 		Delbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
