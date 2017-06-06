@@ -12,14 +12,12 @@ import javax.swing.border.*;
 public class RandomFrame extends JFrame {
 	
 	private JPanel contentPane;
-
-	//Launch the application. 
+ 
 	public static void main(String[] args) {
 		RandomFrame frame = new RandomFrame();
 		frame.setVisible(true);
 	}
 
-	 //Create the frame.
 	public RandomFrame() {
 		
 		////////////////////////////////할일 추천창 전체 프레임

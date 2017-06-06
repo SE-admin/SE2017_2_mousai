@@ -16,13 +16,11 @@ public class RandomResult extends JFrame {
 
 	private JPanel contentPane;
 
-	//Launch the application.
 	public static void main(String[] args) throws IOException {
 		RandomResult frame = new RandomResult();
 		frame.setVisible(true);
 	}
 
-	//Create the frame.
 	public RandomResult() throws IOException {
 		
 		//////////////////////////////////할일 추천 확인창 전체 프레임
