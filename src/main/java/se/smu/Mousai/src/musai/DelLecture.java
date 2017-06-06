@@ -30,8 +30,8 @@ public class DelLecture extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DelLecture frame = new DelLecture();
-					frame.setVisible(true);
+					//DelLecture frame = new DelLecture();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,7 +42,11 @@ public class DelLecture extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DelLecture() {
+	public DelLecture(){
+		
+	}
+	public DelLecture(String cont) {
+		System.out.println(cont);
 		setBounds(100, 100, 435, 569);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 240));
@@ -206,51 +210,51 @@ public class DelLecture extends JFrame {
 		Delbutton.setBounds(257, 474, 59, 38);
 		contentPane.add(Delbutton);
 		
-		BufferedReader outputFile;
-	    try {
-	      outputFile = new BufferedReader(new FileReader("data.dt"));
-	      String str = null;
+		//BufferedReader outputFile;
+	   // try {
+	      //outputFile = new BufferedReader(new FileReader("data.dt"));
+//	      String cont = null;
 	      String str1= "";
 	      String str2= "";
 	      String str3= "";
 	      String str4= "";
 	      String str5= "";
-	      try {
-			while ((str = outputFile.readLine()) != null) {
-			   for(int i=7;!(str.charAt(i)==':'&&str.charAt(i+1)==':')&&!(str.charAt(i)=='<');i++){
-				   str1= str1+str.charAt(i);
+	    //  try {
+			//while ((cont = outputFile.readLine()) != null) {
+			   for(int i=6;!(cont.charAt(i)==':'&&cont.charAt(i+1)==':')&&!(cont.charAt(i)=='<');i++){
+				   str1= str1+cont.charAt(i);
 				   textField.setText(str1);
 			   }
-			   for(int i=str.indexOf("<br>")+4;!(str.charAt(i)==':'&&str.charAt(i+1)==':');i++){
-				   str2=str2+str.charAt(i);
+			   for(int i=cont.indexOf("<br>")+4;!(cont.charAt(i)==':'&&cont.charAt(i+1)==':');i++){
+				   str2=str2+cont.charAt(i);
 				   textField_1.setText(str2);
 				   
 			   }
-			   for(int i=str.indexOf("::")+2;!(str.charAt(i)==':'&&str.charAt(i+1)==':');i++){
-			   		str3=str3+str.charAt(i);
+			   for(int i=cont.indexOf("::")+2;!(cont.charAt(i)==':'&&cont.charAt(i+1)==':');i++){
+			   		str3=str3+cont.charAt(i);
 				   textField_2.setText(str3);
 			   }
-			   for(int i=str.indexOf(":::")+3;!(str.charAt(i)==':'&&str.charAt(i+1)==':');i++){
-				   str4=str4+str.charAt(i);
+			   for(int i=cont.indexOf(":::")+3;!(cont.charAt(i)==':'&&cont.charAt(i+1)==':');i++){
+				   str4=str4+cont.charAt(i);
 				   textField_3.setText(str4);   
 			   }
-			   for(int i=str.indexOf("::::")+4;!(str.charAt(i)=='<');i++){
-					str5=str5+str.charAt(i);
+			   for(int i=cont.indexOf("::::")+4;!(cont.charAt(i)=='<');i++){
+					str5=str5+cont.charAt(i);
 				 textField_4.setText(str5);
 				 		
-				 }break;
 			   }
-			}
+			  // }
+			//}
 	      
-		 catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    } catch (FileNotFoundException e) {
-	      // TODO Auto-generated catch block
-	      e.printStackTrace();
-	    }
-	    
+//		 catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	     catch (FileNotFoundException e) {
+//	      // TODO Auto-generated catch block
+//	      e.printStackTrace();
+//	    }
+//	    
+
 	}
-	
 }

@@ -81,7 +81,15 @@ public class Mainframe extends JFrame {
 			cont.setForeground(new Color(0, 0, 0));
 			cont.setBorder(new LineBorder(Color.black));
 			panel_3.add(cont);
-	        cont.addMouseListener(new MyMouseListener2());
+	        cont.addMouseListener(new MyMouseListener2(){
+	    		public void mouseClicked(MouseEvent e){
+	    			if(e.getClickCount() == 2){
+	    				DelLecture DL = null;
+	    				DL = new DelLecture(cont.getText());
+	    				DL.setVisible(true);
+	    			}
+	    		}
+	        });
 		}
 		in.close();
 
@@ -843,11 +851,11 @@ class MyMouseListener extends MouseAdapter{
 	  }
 }
 	class MyMouseListener2 extends MouseAdapter{
-		public void mouseClicked(MouseEvent e){
-			if(e.getClickCount() == 2){
-				DelLecture DL = null;
-				DL = new DelLecture();
-				DL.setVisible(true);
-			}
-		}
+//		public void mouseClicked(MouseEvent e){
+//			if(e.getClickCount() == 2){
+//				DelLecture DL = null;
+//				DL = new DelLecture();
+//				DL.setVisible(true);
+//			}
+//		}
 	}
