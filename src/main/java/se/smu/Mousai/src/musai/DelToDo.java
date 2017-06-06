@@ -491,11 +491,6 @@ public class DelToDo extends JFrame {
 			map3[i]=map3[i] + "</html>";
 			
 			
-			System.out.println(map3[i]);
-			System.out.println(conttd);
-			
-			
-			
 			map3[i] = map3[i].replaceAll(" ", "");
 					
 					

@@ -31,7 +31,6 @@ public class DeleteTo extends JFrame {
 		
 		
 		
-		System.out.println(cont1);
 		/////////////////////////////// 삭제 확인창 전체 프레임
 		setBounds(100, 100, 426, 165);
 		contentPane = new JPanel();

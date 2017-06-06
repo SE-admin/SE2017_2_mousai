@@ -91,6 +91,7 @@ public class Delete extends JFrame {
 			}
 		});
 
+		
 		// 취소 버튼
 		JButton btnNewButton = new JButton("취소");
 		btnNewButton.setForeground(new Color(128, 128, 128));

@@ -29,12 +29,6 @@ public class DelLecture extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					// DelLecture frame = new DelLecture();
-					// frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 			}
 		});
 	}
@@ -164,13 +158,7 @@ public class DelLecture extends JFrame {
 						} catch (IOException e) {
 						}
 				}
-				// try {
-				// Mainframe ma = new Mainframe();
-				// ma.setVisible(true);
-				// } catch (IOException e) {
-				// // TODO Auto-generated catch block
-				// e.printStackTrace();
-				// }
+
 				int count = 0;
 				try {
 					File data = new File("data.dt");
@@ -246,17 +234,13 @@ public class DelLecture extends JFrame {
 		Delbutton.setBounds(257, 474, 59, 38);
 		contentPane.add(Delbutton);
 
-		// BufferedReader outputFile;
-		// try {
-		// outputFile = new BufferedReader(new FileReader("data.dt"));
-		// String cont = null;
+
 		String str1 = "";
 		String str2 = "";
 		String str3 = "";
 		String str4 = "";
 		String str5 = "";
-		// try {
-		// while ((cont = outputFile.readLine()) != null) {
+
 		for (int i = 6; !(cont.charAt(i) == ':' && cont.charAt(i + 1) == ':') && !(cont.charAt(i) == '<'); i++) {
 			str1 = str1 + cont.charAt(i);
 			textField.setText(str1);
@@ -279,18 +263,6 @@ public class DelLecture extends JFrame {
 			textField_4.setText(str5);
 
 		}
-		// }
-		// }
-
-		// catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// catch (FileNotFoundException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		//
 
 	}
 }
