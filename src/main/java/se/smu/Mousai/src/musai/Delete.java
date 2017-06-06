@@ -17,6 +17,9 @@ import javax.swing.border.*;
 
 public class Delete extends JFrame {
 
+	
+	char[] map=new char[1000];
+	
 	private JPanel contentPane;
 
 	//Launch the application.
@@ -51,11 +54,15 @@ public class Delete extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {//삭제 기능 구현 하기
 			String msg;
-			
+			String str;
+			String str1;
 	        BufferedWriter bw = null;
 	        try {
-	            bw = new BufferedWriter(new FileWriter("data.dt"));
-	            bw.write("");
+	        	bw = new BufferedWriter(new FileWriter("data.dt"));
+//	        	for(i=0;i<=;i++)
+	        	
+	        	
+	            bw.flush();
 	            bw.close();
 	        } catch (IOException e) {
 	            e.printStackTrace();
