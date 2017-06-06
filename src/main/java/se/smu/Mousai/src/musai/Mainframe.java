@@ -57,6 +57,7 @@ public class Mainframe extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				NewLecture nl = new NewLecture();// 과목 추가 생성
 				nl.setVisible(true);
+				dispose();
 			}
 		});
 
@@ -87,6 +88,7 @@ public class Mainframe extends JFrame {
 	    				DelLecture DL = null;
 	    				DL = new DelLecture(cont.getText());
 	    				DL.setVisible(true);
+	    				dispose();
 	    			}
 	    		}
 	        });
@@ -168,6 +170,7 @@ public class Mainframe extends JFrame {
 					e.printStackTrace();
 				} // NewToDo생성
 				rf.setVisible(true);
+				dispose();
 			}
 		});
 		
@@ -242,7 +245,20 @@ public class Mainframe extends JFrame {
 			conttd.setForeground(new Color(0, 0, 0));
 			conttd.setBorder(new LineBorder(Color.black));
 	         conttd.addMouseListener(new MyMouseListener(){
-	        	 
+	       	  public void mouseClicked(MouseEvent e){
+	    		  if(e.getClickCount() == 2){
+	    	           DelToDo DT = null;
+	    	            try {
+	    					DT = new DelToDo(conttd.getText());
+	    				} catch (IOException e1) {
+	    					// TODO Auto-generated catch block
+	    					e1.printStackTrace();
+	    				}
+	    	            DT.setVisible(true);
+	    	    		dispose();
+	    		  }
+
+	    	  }
 	         });
 			for(int i = 0; i<str1[a].length();i++){
 				if(str1[a].charAt(i+1)=='<'&&str1[a].charAt(i+2)=='/'&&str1[a].charAt(i+3)=='h'&&str1[a].charAt(i+4)=='t'&&str1[a].charAt(i+5)=='m'&&str1[a].charAt(i+6)=='l'&&str1[a].charAt(i+7)=='>'){
@@ -583,7 +599,7 @@ public class Mainframe extends JFrame {
 		sptd.setBounds(12, 61, 356, 189);
 		panel_1.add(sptd);
 		
-		
+
 		///////////////////////////////////// 기타 메인 창
 
 		// 검색창
@@ -836,19 +852,20 @@ public class Mainframe extends JFrame {
 	}
 }
 class MyMouseListener extends MouseAdapter{
-	  public void mouseClicked(MouseEvent e){
-		  if(e.getClickCount() == 2){
-	           DelToDo DT = null;
-	            try {
-					DT = new DelToDo();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-	            DT.setVisible(true);
-		  }
-
-	  }
+//	  public void mouseClicked(MouseEvent e){
+//		  if(e.getClickCount() == 2){
+//	           DelToDo DT = null;
+//	            try {
+//					DT = new DelToDo();
+//				} catch (IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//	            DT.setVisible(true);
+//	    		dispose();
+//		  }
+//
+//	  }
 }
 	class MyMouseListener2 extends MouseAdapter{
 //		public void mouseClicked(MouseEvent e){

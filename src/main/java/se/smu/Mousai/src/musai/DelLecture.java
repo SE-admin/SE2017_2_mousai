@@ -46,7 +46,6 @@ public class DelLecture extends JFrame {
 		
 	}
 	public DelLecture(String cont) {
-		System.out.println(cont);
 		setBounds(100, 100, 435, 569);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 240));
@@ -199,7 +198,7 @@ public class DelLecture extends JFrame {
 		Delbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int count = 0;
-				 Delete dl = new Delete();
+				 Delete dl = new Delete(cont);
 		            dl.setVisible(true);
 			dispose();
 			}

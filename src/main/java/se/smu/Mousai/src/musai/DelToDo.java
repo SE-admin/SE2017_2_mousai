@@ -27,9 +27,12 @@ public class DelToDo extends JFrame {
 		DelToDo frame = new DelToDo();
 		frame.setVisible(true);
 	}
-
+	
+	public DelToDo(){
+		
+	}
 	 //Create the frame.
-	public DelToDo() throws IOException {
+	public DelToDo(String conttd) throws IOException {
 		
 		/////////////////////////////////////할일 추가창 전체 프레임
 		setBounds(100, 100, 435, 575);
@@ -433,6 +436,18 @@ public class DelToDo extends JFrame {
 				}
 			}
 		});
+	      String str1= "";
+	      String str2= "";
+		   for(int i=6;!(conttd.charAt(i)=='<');i++){
+			   str1= str1+conttd.charAt(i);
+			   textField_1.setText(str1);
+		   }
+		   for(int i=conttd.indexOf(":::")+3;!(conttd.charAt(i)=='<');i++){
+			   str2=str2+conttd.charAt(i);
+			   textField.setText(str2);
+			   
+		   }
+		
 		
 		JButton delbutton_1 = new JButton("");
 		delbutton_1.setIcon(new ImageIcon("buttons/KakaoTalk_20170518_191824909.png"));

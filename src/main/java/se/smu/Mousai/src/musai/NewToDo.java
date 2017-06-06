@@ -317,7 +317,12 @@ public class NewToDo extends JFrame {
 //		contentPane.add(label_8);
 		
 		
-		
+		JComboBox comboBox_10 = new JComboBox();
+		comboBox_10.setBounds(295, 409, 80, 32);
+		comboBox_10.addItem("보통");
+		comboBox_10.addItem("중요");
+		comboBox_10.addItem("매우 중요");
+		contentPane.add(comboBox_10);
 		
 		
 		//확인 버튼

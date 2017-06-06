@@ -18,8 +18,6 @@ import javax.swing.border.*;
 public class Delete extends JFrame {
 
 	
-	char[] map=new char[1000];
-	
 	private JPanel contentPane;
 
 	//Launch the application.
@@ -27,10 +25,13 @@ public class Delete extends JFrame {
 		Delete frame = new Delete();
 		frame.setVisible(true);
 	}
-
-	 //Create the frame.
-	public Delete() {
+	public Delete(){
 		
+	}
+	 //Create the frame.
+	public Delete(String cont) {
+		System.out.println(cont);
+		String cont1 = " " + cont;
 		///////////////////////////////삭제 확인창 전체 프레임
 		setBounds(100, 100, 426, 165);
 		contentPane = new JPanel();
@@ -54,16 +55,41 @@ public class Delete extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {//삭제 기능 구현 하기
 			String msg;
+			String[] map=new String[1000];
 			String str;
 			String str1;
-	        BufferedWriter bw = null;
+	        BufferedReader bw = null;
+	        FileWriter fw = null;
 	        try {
-	        	bw = new BufferedWriter(new FileWriter("data.dt"));
-//	        	for(i=0;i<=;i++)
-	        	
-	        	
-	            bw.flush();
-	            bw.close();
+	        	bw = new BufferedReader(new FileReader("data.dt"));
+	        	int i=0;
+	        	while ((map[i] = bw.readLine()) != null) {
+	        		System.out.println(map[i]);
+	        		i++;
+	        	}
+	        	bw.close();
+	        	for(int j=0;j<=i;j++){
+	        		if(cont1.equals(map[j])){
+	        			map[j]="";
+	        		}
+	        		System.out.println(map[j]);
+	        	}            
+//	            fw = new FileWriter("data.dt");
+//	            fw.flush();
+//	            fw.close();
+	            fw = new FileWriter("data.dt");
+	            for(int j=0; j<=i;j++){
+	            	System.out.println(map[j]);
+	            	if("".equals(map[j])){
+	            		continue;
+	            	}
+	            		System.out.println(map[j]);
+	            		fw.write(map[j].toString());
+	            }
+	            fw.flush();
+	            fw.close();
+	            
+	            
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }finally {

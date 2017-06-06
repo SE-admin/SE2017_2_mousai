@@ -189,11 +189,12 @@ public class NewLecture extends JFrame {
 					try {
 						Mainframe ma = new Mainframe();
 						ma.setVisible(true);
+						dispose();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					dispose();
+					
 				}
 			}
 		});
