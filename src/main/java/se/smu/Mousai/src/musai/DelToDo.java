@@ -436,24 +436,19 @@ public class DelToDo extends JFrame {
 				}
 			}
 		});
+			
 	      String str1= "";
-	      String str2= "";
-		   for(int i=6;!(conttd.charAt(i)=='<');i++){
+		   for(int i=6;!(conttd.charAt(i)==':'&&conttd.charAt(i+1)==':');i++){
 			   str1= str1+conttd.charAt(i);
 			   textField_1.setText(str1);
 		   }
-		   for(int i=conttd.indexOf(":::")+3;!(conttd.charAt(i)=='<');i++){
-			   str2=str2+conttd.charAt(i);
-			   textField.setText(str2);
-			   
-		   }
-		
-		
+
 		JButton delbutton_1 = new JButton("");
 		delbutton_1.setIcon(new ImageIcon("buttons/KakaoTalk_20170518_191824909.png"));
 		delbutton_1.setForeground(Color.BLACK);
 		delbutton_1.setBackground(Color.WHITE);
 		delbutton_1.setBounds(255, 463, 59, 38);
 		contentPane.add(delbutton_1);
+		    
 	}
 }

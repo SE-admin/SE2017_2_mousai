@@ -1,19 +1,12 @@
 package musai;
 
-import musai.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.border.*;
 
 public class Delete extends JFrame {
 
@@ -30,7 +23,6 @@ public class Delete extends JFrame {
 	}
 	 //Create the frame.
 	public Delete(String cont) {
-		System.out.println(cont);
 		String cont1 = " " + cont;
 		///////////////////////////////삭제 확인창 전체 프레임
 		setBounds(100, 100, 426, 165);
@@ -45,7 +37,7 @@ public class Delete extends JFrame {
 		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 22));
 		lblNewLabel.setBounds(105, 12, 197, 39);
 		contentPane.add(lblNewLabel);
-				
+		
 		//확인버튼
 		JButton button = new JButton("확인");
 		button.setForeground(new Color(128, 128, 128));
@@ -54,42 +46,30 @@ public class Delete extends JFrame {
 		contentPane.add(button);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {//삭제 기능 구현 하기
-			String msg;
 			String[] map=new String[1000];
-			String str;
-			String str1;
 	        BufferedReader bw = null;
 	        FileWriter fw = null;
 	        try {
 	        	bw = new BufferedReader(new FileReader("data.dt"));
 	        	int i=0;
 	        	while ((map[i] = bw.readLine()) != null) {
-	        		System.out.println(map[i]);
 	        		i++;
 	        	}
 	        	bw.close();
-	        	for(int j=0;j<=i;j++){
+	        	for(int j=0;j<i;j++){
 	        		if(cont1.equals(map[j])){
 	        			map[j]="";
 	        		}
-	        		System.out.println(map[j]);
 	        	}            
-//	            fw = new FileWriter("data.dt");
-//	            fw.flush();
-//	            fw.close();
 	            fw = new FileWriter("data.dt");
-	            for(int j=0; j<=i;j++){
-	            	System.out.println(map[j]);
-	            	if("".equals(map[j])){
-	            		continue;
+	            fw.flush();
+	            for(int j=0; j<i;j++){
+	            	if(!("".equals(map[j]))){
+		            	fw.write(map[j]+"\n");
 	            	}
-	            		System.out.println(map[j]);
-	            		fw.write(map[j].toString());
 	            }
 	            fw.flush();
-	            fw.close();
-	            
-	            
+	            fw.close(); 
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }finally {

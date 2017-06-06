@@ -46,6 +46,7 @@ public class DelLecture extends JFrame {
 		
 	}
 	public DelLecture(String cont) {
+		String cont1= " " + cont;
 		setBounds(100, 100, 435, 569);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 240));
@@ -126,44 +127,82 @@ public class DelLecture extends JFrame {
 		label_4.setBounds(40, 415, 112, 32);
 		contentPane.add(label_4);
 		
+		
+		//확인 버튼 누르면
 		JButton savebutton = new JButton("");
 		savebutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String[] map= new String[1000];
+				 BufferedReader bw = null;
+			        FileWriter fw = null;
+			        try {
+			        	bw = new BufferedReader(new FileReader("data.dt"));
+			        	int i=0;
+			        	while ((map[i] = bw.readLine()) != null) {
+			        		i++;
+			        	}
+			        	bw.close();
+			        	for(int j=0;j<i;j++){
+			        		if(cont1.equals(map[j])){
+			        			map[j]="";
+			        		}
+			        	}            
+			            fw = new FileWriter("data.dt");
+			            fw.flush();
+			            for(int j=0; j<i;j++){
+			            	if(!("".equals(map[j]))){
+				            	fw.write(map[j]+"\n");
+			            	}
+			            }
+			            fw.flush();
+			            fw.close(); 
+			        } catch (IOException e) {
+			            e.printStackTrace();
+			        }finally {
+			            if(bw != null) try {bw.close(); } catch (IOException e) {}
+			        }
+//			        try {
+//						Mainframe ma = new Mainframe();
+//						ma.setVisible(true);
+//					} catch (IOException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
 				int count = 0;
 				try {
 					File data = new File("data.dt");
-					FileWriter fw = new FileWriter(data, true);
+					FileWriter fw2 = new FileWriter(data, true);
 					if(!(textField.getText().equals(""))){
-						fw.write(" <html>");
+						fw2.write(" <html>");
 						count++;
-						fw.write(textField.getText());
+						fw2.write(textField.getText());
 					}
 					if(!(textField_1.getText().equals(""))){
-						fw.write("<br>");
+						fw2.write("<br>");
 						count++;
-						fw.write(textField_1.getText());
+						fw2.write(textField_1.getText());
 					}
 					if(!(textField_2.getText().equals(""))){
-						fw.write("::");
+						fw2.write("::");
 						count++;
-						fw.write(textField_2.getText());
+						fw2.write(textField_2.getText());
 					}
 					if(!(textField_3.getText().equals(""))){
-						fw.write(":::");
+						fw2.write(":::");
 						count++;
-						fw.write(textField_3.getText());
+						fw2.write(textField_3.getText());
 					}
 					if(!(textField_4.getText().equals(""))){
-						fw.write("::::");
-						fw.write(textField_4.getText());
-						fw.write("</html>");
-						fw.write("\n");
-						fw.flush();
+						fw2.write("::::");
+						fw2.write(textField_4.getText());
+						fw2.write("</html>");
+						fw2.write("\n");
+						fw2.flush();
 					}
 					else{
-						fw.write("</html>");
-						fw.write("\n");
-						fw.flush();
+						fw2.write("</html>");
+						fw2.write("\n");
+						fw2.flush();
 			}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -191,8 +230,7 @@ public class DelLecture extends JFrame {
 		savebutton.setBackground(Color.WHITE);
 		savebutton.setBounds(99, 474, 59, 38);
 		contentPane.add(savebutton);
-		
-		
+		//삭제하고
 		
 		JButton Delbutton = new JButton("");
 		Delbutton.addActionListener(new ActionListener() {
