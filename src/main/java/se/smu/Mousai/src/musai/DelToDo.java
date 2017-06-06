@@ -30,6 +30,7 @@ public class DelToDo extends JFrame {
 
 	public DelToDo() {
 
+		
 	}
 
 	// Create the frame.
