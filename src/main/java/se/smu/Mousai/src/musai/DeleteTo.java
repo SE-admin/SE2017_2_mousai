@@ -8,23 +8,30 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.*;
 
-public class Delete extends JFrame {
+public class DeleteTo extends JFrame {
 
 	private JPanel contentPane;
 
 	// Launch the application.
 	public static void main(String[] args) {
-		Delete frame = new Delete();
+		DeleteTo frame = new DeleteTo();
 		frame.setVisible(true);
 	}
 
-	public Delete() {
+	public DeleteTo() {
 
 	}
 
 	// Create the frame.
-	public Delete(String cont) {
-		String cont1 = " " + cont;
+	public DeleteTo(String cont) {
+		//String cont1 = " " + cont;
+		
+		String cont1 = cont;
+		
+		
+		
+		
+		System.out.println(cont1);
 		/////////////////////////////// 삭제 확인창 전체 프레임
 		setBounds(100, 100, 426, 165);
 		contentPane = new JPanel();
@@ -47,26 +54,50 @@ public class Delete extends JFrame {
 		contentPane.add(button);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {// 삭제 기능 구현 하기
-				String[] map = new String[1000];
+				String[] map2 = new String[1000];
+				String[] map3 = new String[1000];
 				BufferedReader bw = null;
 				FileWriter fw = null;
 				try {
-					bw = new BufferedReader(new FileReader("data.dt"));
+					bw = new BufferedReader(new FileReader("datatd.dt"));
 					int i = 0;
-					while ((map[i] = bw.readLine()) != null) {
+					
+					while ((map2[i] = bw.readLine()) != null) {
+						map3[i]="";
+						for(int k=0; k<map2[i].length()-2;k++){
+							if(map2[i].charAt(k)==':'&&map2[i].charAt(k+1)==':'&&map2[i].charAt(k+2)==':'){
+								break;
+							}
+							map3[i] = map3[i] + map2[i].charAt(k); 
+						}
+						map3[i]=map3[i] + "</html>";
+						
+						
+						
+						
+						
+						
+						map3[i] = map3[i].replaceAll(" ", "");
+								
+								
+								
+								
+								
+								
+								
 						i++;
 					}
 					bw.close();
 					for (int j = 0; j < i; j++) {
-						if (cont1.equals(map[j])) {
-							map[j] = "";
+						if (cont1.equals(map3[j])) {
+							map2[j] = "";
 						}
 					}
-					fw = new FileWriter("data.dt");
+					fw = new FileWriter("datatd.dt");
 					fw.flush();
 					for (int j = 0; j < i; j++) {
-						if (!("".equals(map[j]))) {
-							fw.write(map[j] + "\n");
+						if (!("".equals(map2[j]))) {
+							fw.write(map2[j] + "\n");
 						}
 					}
 					fw.flush();

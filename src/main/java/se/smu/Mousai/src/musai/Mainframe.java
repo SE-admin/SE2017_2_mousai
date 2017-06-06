@@ -82,16 +82,16 @@ public class Mainframe extends JFrame {
 			cont.setForeground(new Color(0, 0, 0));
 			cont.setBorder(new LineBorder(Color.black));
 			panel_3.add(cont);
-	        cont.addMouseListener(new MyMouseListener2(){
-	    		public void mouseClicked(MouseEvent e){
-	    			if(e.getClickCount() == 2){
-	    				DelLecture DL = null;
-	    				DL = new DelLecture(cont.getText());
-	    				DL.setVisible(true);
-	    				dispose();
-	    			}
-	    		}
-	        });
+			cont.addMouseListener(new MyMouseListener2() {
+				public void mouseClicked(MouseEvent e) {
+					if (e.getClickCount() == 2) {
+						DelLecture DL = null;
+						DL = new DelLecture(cont.getText());
+						DL.setVisible(true);
+						dispose();
+					}
+				}
+			});
 		}
 		in.close();
 
@@ -173,12 +173,11 @@ public class Mainframe extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		JCheckBox checkBox = new JCheckBox("\uC644\uB8CC\uD45C\uC2DC");
 		checkBox.setBounds(257, 50, 115, 23);
 		panel_1.add(checkBox);
 
-		
 		// to do 정렬기능 박스
 		JComboBox<String> comboBox_1 = new JComboBox<String>();
 		comboBox_1.setBounds(230, 18, 65, 30);
@@ -200,8 +199,8 @@ public class Mainframe extends JFrame {
 		panel_4.setBackground(new Color(255, 255, 240));
 		panel_4.setBorder(new LineBorder(Color.black));
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 		String std;
 		File datatd = new File("datatd.dt");
 		String std1 = "";
@@ -213,8 +212,8 @@ public class Mainframe extends JFrame {
 				std1 = std1 + std.charAt(i);
 			}
 			std1 = std1 + "</html>";
-			if(!(checkBox.isSelected())){
-				int countindex=0,goingindex=0;
+			if (!(checkBox.isSelected())) {
+				int countindex = 0, goingindex = 0;
 				for (int j = 0; j < k; j++) {
 					for (int i = 0; i < str1[j].length(); i++) {
 						if (str1[j].charAt(i) == ':' && str1[j].charAt(i + 1) == ':') {
@@ -236,7 +235,7 @@ public class Mainframe extends JFrame {
 			k++;
 		}
 		for (int a = 0; a < k; a++) {// 패널 버튼추가
-			if(str1[a].charAt(0)=='a'){
+			if (str1[a].charAt(0) == 'a') {
 				continue;
 			}
 			str1[a] = str1[a].replaceAll(" ", "");
@@ -244,33 +243,33 @@ public class Mainframe extends JFrame {
 			conttd.setBounds(0, 0, 356, 50);
 			conttd.setForeground(new Color(0, 0, 0));
 			conttd.setBorder(new LineBorder(Color.black));
-	         conttd.addMouseListener(new MyMouseListener(){
-	       	  public void mouseClicked(MouseEvent e){
-	    		  if(e.getClickCount() == 2){
-	    	           DelToDo DT = null;
-	    	            try {
-	    					DT = new DelToDo(conttd.getText());
-	    				} catch (IOException e1) {
-	    					// TODO Auto-generated catch block
-	    					e1.printStackTrace();
-	    				}
-	    	            DT.setVisible(true);
-	    	    		dispose();
-	    		  }
+			conttd.addMouseListener(new MyMouseListener() {
+				public void mouseClicked(MouseEvent e) {
+					if (e.getClickCount() == 2) {
+						DelToDo DT = null;
+						try {
+							DT = new DelToDo(conttd.getText());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						DT.setVisible(true);
+						dispose();
+					}
 
-	    	  }
-	         });
-			for(int i = 0; i<str1[a].length();i++){
-				if(str1[a].charAt(i+1)=='<'&&str1[a].charAt(i+2)=='/'&&str1[a].charAt(i+3)=='h'&&str1[a].charAt(i+4)=='t'&&str1[a].charAt(i+5)=='m'&&str1[a].charAt(i+6)=='l'&&str1[a].charAt(i+7)=='>'){
-					if(str1[a].charAt(i-2)=='우'&&str1[a].charAt(i)=='요'){
+				}
+			});
+			for (int i = 0; i < str1[a].length(); i++) {
+				if (str1[a].charAt(i + 1) == '<' && str1[a].charAt(i + 2) == '/' && str1[a].charAt(i + 3) == 'h'
+						&& str1[a].charAt(i + 4) == 't' && str1[a].charAt(i + 5) == 'm' && str1[a].charAt(i + 6) == 'l'
+						&& str1[a].charAt(i + 7) == '>') {
+					if (str1[a].charAt(i - 2) == '우' && str1[a].charAt(i) == '요') {
 						conttd.setBackground(Color.RED);
 						break;
-					}
-					else if(str1[a].charAt(i)=='요'){
+					} else if (str1[a].charAt(i) == '요') {
 						conttd.setBackground(Color.BLUE);
 						break;
-					}
-					else{
+					} else {
 						break;
 					}
 				}
@@ -294,7 +293,8 @@ public class Mainframe extends JFrame {
 							if (count == i) {
 								count = 0;
 								for (i = 3; i < std.length() - 7; i++) {
-									if (std.charAt(i - 3) == ':' && std.charAt(i - 2) == ':'&& std.charAt(i - 1) == ':') {
+									if (std.charAt(i - 3) == ':' && std.charAt(i - 2) == ':'
+											&& std.charAt(i - 1) == ':') {
 										count++;
 									}
 									if (count > 0) {
@@ -322,7 +322,7 @@ public class Mainframe extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panel_4.removeAll();
 				panel_4.updateUI();
-				
+
 				try {
 					// 파일 읽고 출력
 					File datatd = new File("datatd.dt");
@@ -338,12 +338,14 @@ public class Mainframe extends JFrame {
 					int k = 0;
 					int comboindex = 0;
 					while ((std = intd.readLine()) != null) {
-						for (int i = 0; !(std.charAt(i) == ':' && std.charAt(i + 1) == ':'&& std.charAt(i + 2) == ':'); i++) {
+						for (int i = 0; !(std.charAt(i) == ':' && std.charAt(i + 1) == ':'
+								&& std.charAt(i + 2) == ':'); i++) {
 							std1 = std1 + std.charAt(i);
 						}
-						
-						if(!(checkBox.isSelected())){
-							countindex=0;goingindex=0;
+
+						if (!(checkBox.isSelected())) {
+							countindex = 0;
+							goingindex = 0;
 							for (int j = 0; j < k; j++) {
 								for (int i = 0; i < str1[j].length(); i++) {
 									if (str1[j].charAt(i) == ':' && str1[j].charAt(i + 1) == ':') {
@@ -360,7 +362,7 @@ public class Mainframe extends JFrame {
 								}
 							}
 						}
-						
+
 						std1 = std1 + "</html>";
 						str1[k] = std1;
 						std1 = "";
@@ -380,204 +382,208 @@ public class Mainframe extends JFrame {
 						comboindex = 5;
 					}
 					switch (comboindex) {
-						case 0:// 전체
-							for (counter = 0; counter < k; counter++) {
-								str2[counter] = str1[counter];
-							}
-							break;
-							
-						case 1:// 진행중
-							for (int j = 0; j < k; j++) {
-								for (int i = 0; i < str1[j].length(); i++) {
-									if (str1[j].charAt(i) == ':' && str1[j].charAt(i + 1) == ':') {
-										countindex++;
-									}
-									if (countindex == 3) {
-										goingindex = i;
-										countindex = 0;
-										break;
-									}
-								}
-								if (str1[j].charAt(goingindex + 2) == '진') {
-									str2[counter] = str1[j];
-									counter++;
-								}
-							}
-							break;
-
-						case 2:// 이름순
-							for (int j = 0; j < k; j++) {
-								temp[j] = "";
-								for (int i = 0; !(str1[j].charAt(i) == ':' && str1[j].charAt(i + 1) == ':'); i++) {
-									temp[j] = temp[j] + str1[j].charAt(i);
-								}	
-							}
-							for (counter = 0; counter < k; counter++) {
-								int j = 0;
-								while (temp[j].charAt(0) == 'a') {
-									j++;
-									if (j == k) {
-										break;
-									}
-								}
-								for (int x = 0; x < k; x++) {
-									if (temp[x].charAt(0) == 'a') {
-										continue;
-									}
-									if (temp[j].compareTo(temp[x]) > 0) {
-										j = x;
-									}
-								}
-								str2[counter] = str1[j];
-								temp[j] = temp[j].replace(" ", "a");
-							}	
-							break;
-
-						case 3:// 마감일
-							for (int j = 0; j < k; j++) {
-								temp[j] = " ";
-								for (int i = 0; countindex < 2; i++) {
-									if (str1[j].charAt(i) == ':' && str1[j].charAt(i + 1) == ':') {
-										countindex++;
-									}
-									if (str1[j].charAt(i) == '<' && str1[j].charAt(i + 1) == 'b'&& str1[j].charAt(i + 2) == 'r' && str1[j].charAt(i + 3) == '>') {
-										temp[j] = temp[j] + str1[j].charAt(i);
-									}
-								}
-							}
-							for (counter = 0; counter < k; counter++) {
-								int j = 0;
-								while (temp[j].charAt(0) == 'a') {
-									j++;
-									if (j == k) {
-										break;
-									}
-								}
-								for (int x = 0; x < k; x++) {
-									if (temp[x].charAt(0) == 'a') {
-										continue;
-									}
-									if (temp[j].compareTo(temp[x]) < 0) {
-										j = x;
-									}
-								}
-								str2[counter] = str1[j];
-								temp[j] = temp[j].replace(" ", "a");
-							}	
-							break;
-
-						case 4: // 완료
-							for (int j = 0; j < k; j++) {
-								for (int i = 0; i < str1[j].length(); i++) {
-									if (str1[j].charAt(i) == ':' && str1[j].charAt(i + 1) == ':') {
-										countindex++;
-									}
-									if (countindex == 3) {
-										goingindex = i;
-										countindex = 0;
-										break;
-									}
-								}
-								if (str1[j].charAt(goingindex + 2) == '완') {
-									str2[counter] = str1[j];
-									counter++;
-								}
-							}
-							break;
-
-						case 5: // 실제마감일
-							for (int j = 0; j < k; j++) {
-								temp[j] = " ";
-								for (int i = 0; goingindex < 2; i++) {
-									if (str1[j].charAt(i) == ':' && str1[j].charAt(i + 1) == ':') {
-										countindex++;
-									}
-									if (str1[j].charAt(i) == '<' && str1[j].charAt(i + 1) == 'b'&& str1[j].charAt(i + 2) == 'r' && str1[j].charAt(i + 3) == '>') {
-										goingindex++;
-									}
-									if (countindex == 2) {
-										temp[j] = temp[j] + str1[j].charAt(i);
-									}
-								}
-							}
-							for (counter = 0; counter < k; counter++) {
-								int j = 0;
-								while (temp[j].charAt(0) == 'a') {
-									j++;
-									if (j == k) {
-										break;
-									}
-								}
-								for (int x = 0; x < k; x++) {
-									if (temp[x].charAt(0) == 'a') {
-										continue;
-									}
-									if (temp[j].compareTo(temp[x]) < 0) {
-										j = x;
-									}
-								}
-								str2[counter] = str1[j];
-								temp[j] = temp[j].replace(" ", "a");
-							}
-							break;
+					case 0:// 전체
+						for (counter = 0; counter < k; counter++) {
+							str2[counter] = str1[counter];
 						}
-						for (int a = 0; a < counter; a++) {// 패널 버튼추가
-							if(str2[a].charAt(0)=='a'){
-								continue;
-							}
-							str2[a] = str2[a].replaceAll(" ", "");
-							JButton conttd = new JButton(str2[a]);
-							conttd.setBounds(0, 0, 356, 50);
-							conttd.setForeground(new Color(0, 0, 0));
-							conttd.setBorder(new LineBorder(Color.black));
-							for(int i = 0; i<str1[a].length();i++){
-								if(str2[a].charAt(i+1)=='<'&&str2[a].charAt(i+2)=='/'&&str2[a].charAt(i+3)=='h'&&str2[a].charAt(i+4)=='t'&&str2[a].charAt(i+5)=='m'&&str2[a].charAt(i+6)=='l'&&str2[a].charAt(i+7)=='>'){
-									if(str2[a].charAt(i-2)=='우'&&str2[a].charAt(i)=='요'){
-										conttd.setBackground(Color.RED);
-										break;
-									}
-									else if(str2[a].charAt(i)=='요'){
-										conttd.setBackground(Color.BLUE);
-										break;
-									}
-									else{
-										break;
-									}
+						break;
+
+					case 1:// 진행중
+						for (int j = 0; j < k; j++) {
+							for (int i = 0; i < str1[j].length(); i++) {
+								if (str1[j].charAt(i) == ':' && str1[j].charAt(i + 1) == ':') {
+									countindex++;
+								}
+								if (countindex == 3) {
+									goingindex = i;
+									countindex = 0;
+									break;
 								}
 							}
-							conttd.addActionListener(new ActionListener() {
-								public void actionPerformed(ActionEvent arg0) {
-									String std, std1, std2;
-									File datatd = new File("datatd.dt");
-									try {
-										std1 = " " + conttd.getText();
-										BufferedReader intd = new BufferedReader(new FileReader(datatd));
-										while ((std = intd.readLine()) != null) {
-											int count = 0;
-											int i = 0;
-											for (i = 0; !(std1.charAt(i) == ':' && std1.charAt(i + 1) == ':'); i++) {
-												if (std.charAt(i) == std1.charAt(i)) {
-													count++;
-												}	
-											}
-											std2 = "";
-											if (count == i) {
-												count = 0;
-												for (i = 3; i < std.length() - 7; i++) {
-													if (std.charAt(i - 3) == ':' && std.charAt(i - 2) == ':'&& std.charAt(i - 1) == ':') {
-														count++;
-													}
-													if (count > 0) {
-														std2 = std2 + std.charAt(i);
-													}
-												}
-												jl.setText(std2);
-												panel_5.updateUI();
+							if (str1[j].charAt(goingindex + 2) == '진') {
+								str2[counter] = str1[j];
+								counter++;
+							}
+						}
+						break;
+
+					case 2:// 이름순
+						for (int j = 0; j < k; j++) {
+							temp[j] = "";
+							for (int i = 0; !(str1[j].charAt(i) == ':' && str1[j].charAt(i + 1) == ':'); i++) {
+								temp[j] = temp[j] + str1[j].charAt(i);
+							}
+						}
+						for (counter = 0; counter < k; counter++) {
+							int j = 0;
+							while (temp[j].charAt(0) == 'a') {
+								j++;
+								if (j == k) {
+									break;
+								}
+							}
+							for (int x = 0; x < k; x++) {
+								if (temp[x].charAt(0) == 'a') {
+									continue;
+								}
+								if (temp[j].compareTo(temp[x]) > 0) {
+									j = x;
+								}
+							}
+							str2[counter] = str1[j];
+							temp[j] = temp[j].replace(" ", "a");
+						}
+						break;
+
+					case 3:// 마감일
+						for (int j = 0; j < k; j++) {
+							temp[j] = " ";
+							for (int i = 0; countindex < 2; i++) {
+								if (str1[j].charAt(i) == ':' && str1[j].charAt(i + 1) == ':') {
+									countindex++;
+								}
+								if (str1[j].charAt(i) == '<' && str1[j].charAt(i + 1) == 'b'
+										&& str1[j].charAt(i + 2) == 'r' && str1[j].charAt(i + 3) == '>') {
+									temp[j] = temp[j] + str1[j].charAt(i);
+								}
+							}
+						}
+						for (counter = 0; counter < k; counter++) {
+							int j = 0;
+							while (temp[j].charAt(0) == 'a') {
+								j++;
+								if (j == k) {
+									break;
+								}
+							}
+							for (int x = 0; x < k; x++) {
+								if (temp[x].charAt(0) == 'a') {
+									continue;
+								}
+								if (temp[j].compareTo(temp[x]) < 0) {
+									j = x;
+								}
+							}
+							str2[counter] = str1[j];
+							temp[j] = temp[j].replace(" ", "a");
+						}
+						break;
+
+					case 4: // 완료
+						for (int j = 0; j < k; j++) {
+							for (int i = 0; i < str1[j].length(); i++) {
+								if (str1[j].charAt(i) == ':' && str1[j].charAt(i + 1) == ':') {
+									countindex++;
+								}
+								if (countindex == 3) {
+									goingindex = i;
+									countindex = 0;
+									break;
+								}
+							}
+							if (str1[j].charAt(goingindex + 2) == '완') {
+								str2[counter] = str1[j];
+								counter++;
+							}
+						}
+						break;
+
+					case 5: // 실제마감일
+						for (int j = 0; j < k; j++) {
+							temp[j] = " ";
+							for (int i = 0; goingindex < 2; i++) {
+								if (str1[j].charAt(i) == ':' && str1[j].charAt(i + 1) == ':') {
+									countindex++;
+								}
+								if (str1[j].charAt(i) == '<' && str1[j].charAt(i + 1) == 'b'
+										&& str1[j].charAt(i + 2) == 'r' && str1[j].charAt(i + 3) == '>') {
+									goingindex++;
+								}
+								if (countindex == 2) {
+									temp[j] = temp[j] + str1[j].charAt(i);
+								}
+							}
+						}
+						for (counter = 0; counter < k; counter++) {
+							int j = 0;
+							while (temp[j].charAt(0) == 'a') {
+								j++;
+								if (j == k) {
+									break;
+								}
+							}
+							for (int x = 0; x < k; x++) {
+								if (temp[x].charAt(0) == 'a') {
+									continue;
+								}
+								if (temp[j].compareTo(temp[x]) < 0) {
+									j = x;
+								}
+							}
+							str2[counter] = str1[j];
+							temp[j] = temp[j].replace(" ", "a");
+						}
+						break;
+					}
+					for (int a = 0; a < counter; a++) {// 패널 버튼추가
+						if (str2[a].charAt(0) == 'a') {
+							continue;
+						}
+						str2[a] = str2[a].replaceAll(" ", "");
+						JButton conttd = new JButton(str2[a]);
+						conttd.setBounds(0, 0, 356, 50);
+						conttd.setForeground(new Color(0, 0, 0));
+						conttd.setBorder(new LineBorder(Color.black));
+						for (int i = 0; i < str1[a].length(); i++) {
+							if (str2[a].charAt(i + 1) == '<' && str2[a].charAt(i + 2) == '/'
+									&& str2[a].charAt(i + 3) == 'h' && str2[a].charAt(i + 4) == 't'
+									&& str2[a].charAt(i + 5) == 'm' && str2[a].charAt(i + 6) == 'l'
+									&& str2[a].charAt(i + 7) == '>') {
+								if (str2[a].charAt(i - 2) == '우' && str2[a].charAt(i) == '요') {
+									conttd.setBackground(Color.RED);
+									break;
+								} else if (str2[a].charAt(i) == '요') {
+									conttd.setBackground(Color.BLUE);
+									break;
+								} else {
+									break;
+								}
+							}
+						}
+						conttd.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								String std, std1, std2;
+								File datatd = new File("datatd.dt");
+								try {
+									std1 = " " + conttd.getText();
+									BufferedReader intd = new BufferedReader(new FileReader(datatd));
+									while ((std = intd.readLine()) != null) {
+										int count = 0;
+										int i = 0;
+										for (i = 0; !(std1.charAt(i) == ':' && std1.charAt(i + 1) == ':'); i++) {
+											if (std.charAt(i) == std1.charAt(i)) {
+												count++;
 											}
 										}
-										intd.close();
-									} catch (FileNotFoundException e) {
-										e.printStackTrace();
+										std2 = "";
+										if (count == i) {
+											count = 0;
+											for (i = 3; i < std.length() - 7; i++) {
+												if (std.charAt(i - 3) == ':' && std.charAt(i - 2) == ':'
+														&& std.charAt(i - 1) == ':') {
+													count++;
+												}
+												if (count > 0) {
+													std2 = std2 + std.charAt(i);
+												}
+											}
+											jl.setText(std2);
+											panel_5.updateUI();
+										}
+									}
+									intd.close();
+								} catch (FileNotFoundException e) {
+									e.printStackTrace();
 								} catch (IOException e) {
 									e.printStackTrace();
 								}
@@ -598,7 +604,6 @@ public class Mainframe extends JFrame {
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		sptd.setBounds(12, 61, 356, 189);
 		panel_1.add(sptd);
-		
 
 		///////////////////////////////////// 기타 메인 창
 
@@ -608,23 +613,23 @@ public class Mainframe extends JFrame {
 		textField.setBounds(109, 6, 536, 45);
 		contentPane.add(textField);
 		textField.setColumns(10);// 기능 구현하기
-		
+
 		// 검색 종류 선택 박스
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(14, 10, 81, 37);
 		comboBox.addItem("과목");
 		comboBox.addItem("할일");
 		contentPane.add(comboBox);// 기능 구현 하기
-		
+
 		// 검색 버튼
 		JButton btnNewButton_1 = new JButton();
 		btnNewButton_1.setBounds(659, 6, 36, 45);
 		btnNewButton_1.setIcon(new ImageIcon("buttons/KakaoTalk_20170518_191846026.png"));
 		contentPane.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0){// 검색 기능 구현 하기
-				if(comboBox.getSelectedItem()=="과목"){
-					if(textField.getText().equals("")){
+			public void actionPerformed(ActionEvent arg0) {// 검색 기능 구현 하기
+				if (comboBox.getSelectedItem() == "과목") {
+					if (textField.getText().equals("")) {
 						panel_3.removeAll();
 						File data = new File("data.dt");
 						BufferedReader in;
@@ -645,21 +650,21 @@ public class Mainframe extends JFrame {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-					}
-					else{
+					} else {
 						panel_3.removeAll();
 						panel_3.updateUI();
 						File data = new File("data.dt");
 						BufferedReader in;
 						try {
 							in = new BufferedReader(new FileReader(data));
-							String s, s2="";
+							String s, s2 = "";
 							int count = 0;
 							while ((s = in.readLine()) != null) {
-								for(int i = 7; !(s.charAt(i)=='<'&&s.charAt(i+1)=='b'&&s.charAt(i+2)=='r'&&s.charAt(i+3)=='>');i++){
-									s2 = s2+s.charAt(i);
+								for (int i = 7; !(s.charAt(i) == '<' && s.charAt(i + 1) == 'b' && s.charAt(i + 2) == 'r'
+										&& s.charAt(i + 3) == '>'); i++) {
+									s2 = s2 + s.charAt(i);
 								}
-								if(s2.equals(textField.getText())){
+								if (s2.equals(textField.getText())) {
 									count++;
 									s = s.replaceAll(" ", "");
 									JButton cont = new JButton(s);
@@ -667,17 +672,15 @@ public class Mainframe extends JFrame {
 									cont.setForeground(new Color(0, 0, 0));
 									cont.setBorder(new LineBorder(Color.black));
 									panel_3.add(cont);
-								}
-								else{
-									s2="";
+								} else {
+									s2 = "";
 								}
 							}
-							if(count==0){
+							if (count == 0) {
 								JLabel nothere = new JLabel("찾는 정보가 없습니다.");
 								panel_3.add(nothere);
-							}
-							else{
-								count=0;
+							} else {
+								count = 0;
 							}
 							panel_3.updateUI();
 							in.close();
@@ -686,19 +689,19 @@ public class Mainframe extends JFrame {
 							e.printStackTrace();
 						}
 					}
-				}
-				else{
-					if(textField.getText().equals("")){
+				} else {
+					if (textField.getText().equals("")) {
 						panel_4.removeAll();
 						panel_4.updateUI();
 						File data = new File("datatd.dt");
 						BufferedReader in;
 						try {
 							in = new BufferedReader(new FileReader(data));
-							String s, s2="";
+							String s, s2 = "";
 							while ((s = in.readLine()) != null) {
-								s2="";
-								for (int i = 0; !(s.charAt(i) == ':' && s.charAt(i + 1) == ':'&& s.charAt(i + 2) == ':'); i++) {
+								s2 = "";
+								for (int i = 0; !(s.charAt(i) == ':' && s.charAt(i + 1) == ':'
+										&& s.charAt(i + 2) == ':'); i++) {
 									s2 = s2 + s.charAt(i);
 								}
 								s2 = s2.replace(" ", "");
@@ -706,7 +709,7 @@ public class Mainframe extends JFrame {
 								cont.setBounds(0, 0, 356, 50);
 								cont.setForeground(new Color(0, 0, 0));
 								cont.setBorder(new LineBorder(Color.black));
-								
+
 								cont.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent arg0) {
 										String std, std1, std2;
@@ -717,16 +720,18 @@ public class Mainframe extends JFrame {
 											while ((std = intd.readLine()) != null) {
 												int count = 0;
 												int i = 0;
-												for (i = 0; !(std1.charAt(i) == ':' && std1.charAt(i + 1) == ':'); i++) {
+												for (i = 0; !(std1.charAt(i) == ':'
+														&& std1.charAt(i + 1) == ':'); i++) {
 													if (std.charAt(i) == std1.charAt(i)) {
 														count++;
-													}	
+													}
 												}
 												std2 = "";
 												if (count == i) {
 													count = 0;
 													for (i = 3; i < std.length() - 7; i++) {
-														if (std.charAt(i - 3) == ':' && std.charAt(i - 2) == ':'&& std.charAt(i - 1) == ':') {
+														if (std.charAt(i - 3) == ':' && std.charAt(i - 2) == ':'
+																&& std.charAt(i - 1) == ':') {
 															count++;
 														}
 														if (count > 0) {
@@ -740,12 +745,12 @@ public class Mainframe extends JFrame {
 											intd.close();
 										} catch (FileNotFoundException e) {
 											e.printStackTrace();
-									} catch (IOException e) {
-										e.printStackTrace();
+										} catch (IOException e) {
+											e.printStackTrace();
+										}
 									}
-								}
-							});
-								
+								});
+
 								panel_4.add(cont);
 							}
 							panel_4.updateUI();
@@ -754,25 +759,25 @@ public class Mainframe extends JFrame {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-					}
-					else{
+					} else {
 						panel_4.removeAll();
 						panel_4.updateUI();
 						File data = new File("datatd.dt");
 						BufferedReader in;
 						try {
 							in = new BufferedReader(new FileReader(data));
-							String s, s2="";
+							String s, s2 = "";
 							int count = 0;
 							while ((s = in.readLine()) != null) {
-								for(int i = 7; !(s.charAt(i)==':'&&s.charAt(i+1)==':');i++){
-									s2 = s2+s.charAt(i);
+								for (int i = 7; !(s.charAt(i) == ':' && s.charAt(i + 1) == ':'); i++) {
+									s2 = s2 + s.charAt(i);
 								}
-								if(s2.equals(textField.getText())){
-									s2="";
+								if (s2.equals(textField.getText())) {
+									s2 = "";
 									count++;
 									s = s.replaceAll(" ", "");
-									for (int i = 0; !(s.charAt(i) == ':' && s.charAt(i + 1) == ':'&& s.charAt(i + 2) == ':'); i++) {
+									for (int i = 0; !(s.charAt(i) == ':' && s.charAt(i + 1) == ':'
+											&& s.charAt(i + 2) == ':'); i++) {
 										s2 = s2 + s.charAt(i);
 									}
 									s2 = s2 + "</html>";
@@ -780,7 +785,7 @@ public class Mainframe extends JFrame {
 									cont.setBounds(0, 0, 356, 50);
 									cont.setForeground(new Color(0, 0, 0));
 									cont.setBorder(new LineBorder(Color.black));
-									
+
 									cont.addActionListener(new ActionListener() {
 										public void actionPerformed(ActionEvent arg0) {
 											String std, std1, std2;
@@ -791,16 +796,18 @@ public class Mainframe extends JFrame {
 												while ((std = intd.readLine()) != null) {
 													int count = 0;
 													int i = 0;
-													for (i = 0; !(std1.charAt(i) == ':' && std1.charAt(i + 1) == ':'); i++) {
+													for (i = 0; !(std1.charAt(i) == ':'
+															&& std1.charAt(i + 1) == ':'); i++) {
 														if (std.charAt(i) == std1.charAt(i)) {
 															count++;
-														}	
+														}
 													}
 													std2 = "";
 													if (count == i) {
 														count = 0;
 														for (i = 3; i < std.length() - 7; i++) {
-															if (std.charAt(i - 3) == ':' && std.charAt(i - 2) == ':'&& std.charAt(i - 1) == ':') {
+															if (std.charAt(i - 3) == ':' && std.charAt(i - 2) == ':'
+																	&& std.charAt(i - 1) == ':') {
 																count++;
 															}
 															if (count > 0) {
@@ -814,16 +821,16 @@ public class Mainframe extends JFrame {
 												intd.close();
 											} catch (FileNotFoundException e) {
 												e.printStackTrace();
-										} catch (IOException e) {
-											e.printStackTrace();
+											} catch (IOException e) {
+												e.printStackTrace();
+											}
 										}
-									}
-								});
-									
+									});
+
 									panel_4.add(cont);
 								}
 							}
-							if(count==0){
+							if (count == 0) {
 								JLabel nothere = new JLabel("찾는 정보가 없습니다.");
 								panel_4.add(nothere);
 							}
@@ -837,7 +844,7 @@ public class Mainframe extends JFrame {
 				}
 			}
 		});
-		
+
 		// 할일 추천 버튼
 		JButton btnNewButton = new JButton();
 		btnNewButton.setBounds(709, 5, 59, 47);
@@ -851,28 +858,11 @@ public class Mainframe extends JFrame {
 		});
 	}
 }
-class MyMouseListener extends MouseAdapter{
-//	  public void mouseClicked(MouseEvent e){
-//		  if(e.getClickCount() == 2){
-//	           DelToDo DT = null;
-//	            try {
-//					DT = new DelToDo();
-//				} catch (IOException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//	            DT.setVisible(true);
-//	    		dispose();
-//		  }
-//
-//	  }
+
+class MyMouseListener extends MouseAdapter {
+
 }
-	class MyMouseListener2 extends MouseAdapter{
-//		public void mouseClicked(MouseEvent e){
-//			if(e.getClickCount() == 2){
-//				DelLecture DL = null;
-//				DL = new DelLecture();
-//				DL.setVisible(true);
-//			}
-//		}
-	}
+
+class MyMouseListener2 extends MouseAdapter {
+
+}
