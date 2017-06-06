@@ -308,78 +308,145 @@ public class DelToDo extends JFrame {
 
 		button.addActionListener(new ActionListener() {// 버튼 클릭시 수행 동작
 			public void actionPerformed(ActionEvent e) {
+				String[] map2 = new String[1000];
+				String[] map3 = new String[1000];
+				BufferedReader bw = null;
+				FileWriter fw = null;
+				
+				try {
+					bw = new BufferedReader(new FileReader("datatd.dt"));
+					int i = 0;
+					
+					while ((map2[i] = bw.readLine()) != null) {
+						map3[i]="";
+						for(int k=0; k<map2[i].length()-2;k++){
+							if(map2[i].charAt(k)==':'&&map2[i].charAt(k+1)==':'&&map2[i].charAt(k+2)==':'){
+								break;
+							}
+							map3[i] = map3[i] + map2[i].charAt(k); 
+						}
+						map3[i]=map3[i] + "</html>";
+						
+						
+						
+						
+						
+						
+						map3[i] = map3[i].replaceAll(" ", "");
+								
+								
+								
+								
+								
+								
+								
+						i++;
+					}
+					bw.close();
+					for (int j = 0; j < i; j++) {
+						if (conttd.equals(map3[j])) {
+							map2[j] = "";
+						}
+					}
+					fw = new FileWriter("datatd.dt");
+					fw.flush();
+					for (int j = 0; j < i; j++) {
+						if (!("".equals(map2[j]))) {
+							fw.write(map2[j] + "\n");
+						}
+					}
+					fw.flush();
+					fw.close();
+				} catch (IOException c) {
+					c.printStackTrace();
+				} finally {
+					if (bw != null)
+						try {
+							bw.close();
+						} catch (IOException s) {
+						}
+				}
+//				try {
+//					Mainframe ma = new Mainframe();
+//					ma.setVisible(true);
+//				} catch (IOException q) {
+//					// TODO Auto-generated catch block
+//					q.printStackTrace();
+//				}
+				dispose();
+			
 				int count = 0;
 				try {
 					File data = new File("datatd.dt");
-					FileWriter fw = new FileWriter(data, true);
+					FileWriter fw2 = new FileWriter(data, true);
 					if (!(textField_1.getText().equals(""))) {
-						fw.write(" <html>");
-						fw.write(textField_1.getText());
-						fw.write("::");
+						fw2.write(" <html>");
+						fw2.write(textField_1.getText());
+						fw2.write("::");
 						count++;
 					}
 					if (count == 1) {
-						fw.write(comboBox.getSelectedItem().toString());
+						fw2.write(comboBox.getSelectedItem().toString());
 					}
 					if (count == 1) {
-						fw.write("<br>마감기한 : ");
-						fw.write(comboBox_1.getSelectedItem().toString());
+						fw2.write("<br>마감기한 : ");
+						fw2.write(comboBox_1.getSelectedItem().toString());
 					}
 					if (count == 1) {
-						fw.write("월 ");
-						fw.write(comboBox_2.getSelectedItem().toString());
+						fw2.write("월 ");
+						fw2.write(comboBox_2.getSelectedItem().toString());
 					}
 					if (count == 1) {
-						fw.write("일 ");
-						fw.write(comboBox_7.getSelectedItem().toString());
-						fw.write("시::");
+						fw2.write("일 ");
+						fw2.write(comboBox_7.getSelectedItem().toString());
+						fw2.write("시::");
 					}
 					if (count == 1) {
-						fw.write("실제 마감일 : ");
-						fw.write(comboBox_3.getSelectedItem().toString());
+						fw2.write("실제 마감일 : ");
+						fw2.write(comboBox_3.getSelectedItem().toString());
 					}
 					if (count == 1) {
-						fw.write("월 ");
-						fw.write(comboBox_4.getSelectedItem().toString());
+						fw2.write("월 ");
+						fw2.write(comboBox_4.getSelectedItem().toString());
 					}
 					if (count == 1) {
-						fw.write("일 ");
-						fw.write(comboBox_8.getSelectedItem().toString());
-						fw.write("시<br>");
+						fw2.write("일 ");
+						fw2.write(comboBox_8.getSelectedItem().toString());
+						fw2.write("시<br>");
 					}
 					if (count == 1) {
-						fw.write("알림 꺼짐::");
+						fw2.write("알림 꺼짐::");
 					} else {
 						if (count == 1) {
-							fw.write("알림 시간 : ");
-							fw.write(comboBox_5.getSelectedItem().toString());
+							fw2.write("알림 시간 : ");
+							fw2.write(comboBox_5.getSelectedItem().toString());
 						}
 						if (count == 1) {
-							fw.write("월 ");
-							fw.write(comboBox_6.getSelectedItem().toString());
+							fw2.write("월 ");
+							fw2.write(comboBox_6.getSelectedItem().toString());
 						}
 						if (count == 1) {
-							fw.write("일 ");
-							fw.write(comboBox_9.getSelectedItem().toString());
-							fw.write("시::");
+							fw2.write("일 ");
+							fw2.write(comboBox_9.getSelectedItem().toString());
+							fw2.write("시::");
 						}
 					}
 					if ((chckbxNewCheckBox.isSelected()) && count == 1) {
-						fw.write("완료::");
-						fw.write(comboBox_10.getSelectedItem().toString());
-						fw.write(":::");
-						fw.write(textField.getText());
+						fw2.write("완료::");
+						fw2.write(comboBox_10.getSelectedItem().toString());
+						fw2.write(":::");
+						fw2.write(textField.getText());
 
 					} else {
-						fw.write("진행중::");
-						fw.write(comboBox_10.getSelectedItem().toString());
-						fw.write(":::");
-						fw.write(textField.getText());
+						fw2.write("진행중::");
+						fw2.write(comboBox_10.getSelectedItem().toString());
+						fw2.write(":::");
+						fw2.write(textField.getText());
 					}
 					if (count == 1) {
-						fw.write("</html>");
-						fw.write("\n");
-						fw.flush();
+						fw2.write("</html>");
+						fw2.write("\n");
+						fw2.flush();
 					}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -409,15 +476,61 @@ public class DelToDo extends JFrame {
 		}
 
 		File data1 = new File("datatd.dt");
-		BufferedReader in1 = new BufferedReader(new FileReader(data1));
-		String T;
-		while ((T = in1.readLine()) != null) {
-			for (int i = T.indexOf(":::")+3; !(T.charAt(i) == '<'); i++) {
-				str = str + T.charAt(i);
-				textField.setText(str);
+		BufferedReader bw = new BufferedReader(new FileReader(data1));
+		String[] map2=new String [1000];
+		String[] map3=new String [1000];
+		int i = 0;
+		while ((map2[i] = bw.readLine()) != null) {
+			map3[i]="";
+			for(int k=0; k<map2[i].length()-2;k++){
+				if(map2[i].charAt(k)==':'&&map2[i].charAt(k+1)==':'&&map2[i].charAt(k+2)==':'){
+					break;
+				}
+				map3[i] = map3[i] + map2[i].charAt(k); 
 			}
+			map3[i]=map3[i] + "</html>";
+			
+			
+			System.out.println(map3[i]);
+			System.out.println(conttd);
+			
+			
+			
+			map3[i] = map3[i].replaceAll(" ", "");
+					
+					
+					
+			if(map3[i].equals(conttd)){
+				for (int x = map2[i].indexOf(":::")+3; !(map2[i].charAt(x) == '<'); x++) {
+					str = str + map2[i].charAt(x);
+					textField.setText(str);
+				}
+			}
+					
+					
+					
+			i++;
 		}
-		in1.close();
+		bw.close();
+
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		
 
 		JButton delbutton_1 = new JButton("");
 		delbutton_1.addActionListener(new ActionListener() {
