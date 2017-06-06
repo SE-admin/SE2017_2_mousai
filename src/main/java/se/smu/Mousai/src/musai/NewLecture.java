@@ -163,9 +163,9 @@ public class NewLecture extends JFrame {
 						fw.write(":::");
 						count++;
 						fw.write(textField_3.getText());
+						fw.write("::::");
 					}
 					if(!(textField_4.getText().equals(""))){
-						fw.write("::::");
 						fw.write(textField_4.getText());
 						fw.write("</html>");
 						fw.write("\n");
