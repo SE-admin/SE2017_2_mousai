@@ -8,7 +8,8 @@ import javax.swing.event.*;
 import javax.swing.border.*;
 import java.io.*;
 
-public class NewLecture extends JFrame {
+
+public class NewLecture extends JFrame{
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -23,9 +24,24 @@ public class NewLecture extends JFrame {
 		NewLecture frame = new NewLecture();
 		frame.setVisible(true);
 	}
-
+	
 	 //Create the frame.
 	 public NewLecture() {
+		 
+		 setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		 this.addWindowListener(new WindowAdapter(){
+             public void windowClosing(WindowEvent e) { 
+            	 try {
+						Mainframe ma = new Mainframe();
+						ma.setVisible(true);
+						dispose();
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+             }
+		 });
+
 		 
 		////////////////////////////////////과목추가창 전체 프레임
 		setBackground(Color.WHITE);
@@ -199,4 +215,7 @@ public class NewLecture extends JFrame {
 			}
 		});
 	}
+
+
+
 }

@@ -31,6 +31,10 @@ public class Warning extends JFrame {
 	 * Create the frame.
 	 */
 	public Warning() {
+		
+		
+		
+		
 		setBounds(100, 100, 426, 140);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));

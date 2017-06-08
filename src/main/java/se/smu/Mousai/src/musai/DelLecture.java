@@ -35,6 +35,22 @@ public class DelLecture extends JFrame {
 	}
 
 	public DelLecture(String cont) {
+		
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		 this.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e) { 
+           	 try {
+						Mainframe ma = new Mainframe();
+						ma.setVisible(true);
+						dispose();
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+            }
+		 });
+		
+		
 		String cont1 = " " + cont;
 		setBounds(100, 100, 435, 569);
 		contentPane = new JPanel();
@@ -176,9 +192,9 @@ public class DelLecture extends JFrame {
 						fw2.write(":::");
 						count++;
 						fw2.write(textField_3.getText());
+						fw2.write("::::");
 					}
 					if (!(textField_4.getText().equals(""))) {
-						fw2.write("::::");
 						fw2.write(textField_4.getText());
 						fw2.write("</html>");
 						fw2.write("\n");
@@ -200,11 +216,12 @@ public class DelLecture extends JFrame {
 					try {
 						Mainframe ma = new Mainframe();
 						ma.setVisible(true);
+						dispose();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					dispose();
+					
 				}
 			}
 		});
