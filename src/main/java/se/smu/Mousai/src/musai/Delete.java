@@ -19,11 +19,27 @@ public class Delete extends JFrame {
 	}
 
 	public Delete() {
+		
 
 	}
 
 	// Create the frame.
 	public Delete(String cont) {
+		
+		   setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+			 this.addWindowListener(new WindowAdapter(){
+	           public void windowClosing(WindowEvent e) { 
+	          	 try {
+							Mainframe ma = new Mainframe();
+							ma.setVisible(true);
+							dispose();
+						} catch (IOException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+	           }
+			 });
+			 
 		String cont1 = " " + cont;
 		/////////////////////////////// 삭제 확인창 전체 프레임
 		setBounds(100, 100, 426, 165);
@@ -100,6 +116,14 @@ public class Delete extends JFrame {
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+	          	 try {
+							Mainframe ma = new Mainframe();
+							ma.setVisible(true);
+							dispose();
+						} catch (IOException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
 				dispose();
 			}
 		});

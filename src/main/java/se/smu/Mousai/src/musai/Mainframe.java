@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Calendar;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -16,14 +18,70 @@ public class Mainframe extends JFrame {
 	private JTextField textField;
 
 	// Launch the application.
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		Mainframe frame = new Mainframe();
 		frame.setVisible(true);
+		///알람
+		File alarm = new File("alarmtime.dt");
+		int month = 0, date = 0, hour = 0, counter = 0;
+		while (true) {
+			FileReader alarmdt = new FileReader(alarm);
+			Calendar cal = Calendar.getInstance();
+			// 월 구하기
+			for (int i = 0; i < 3; i++) {
+				int alstd = alarmdt.read();
+				if (alstd == 9) {
+					break;
+				}
+				alstd -= 48;
+				month *= 10;
+				month += alstd;
+			}
+			
+			// 일 구하기
+			for (int i = 0; i < 3; i++) {
+				int alstd = alarmdt.read();
+				if (alstd == 9) {
+					break;
+				}
+				alstd -= 48;
+				date *= 10;
+				date += alstd;
+			}
+			
+			// 시 구하기
+			for (int i = 0; i < 3; i++) {
+				int alstd = alarmdt.read();
+				if (alstd == 10) {
+					break;
+				}
+				if (alstd == 13) {
+					break;
+				}
+				alstd -= 48;
+				hour *= 10;
+				hour += alstd;
+			}
+			
+			int mon = cal.get(Calendar.MONTH);
+			int day = cal.get(Calendar.DAY_OF_MONTH);
+			int ho = cal.get(Calendar.HOUR_OF_DAY);
+			int min = cal.get(Calendar.MINUTE);
+			mon += 1;
+			if (month == mon && date == day && hour == ho && min < 5) {
+				Alarm alarm1 = new Alarm();
+				alarm1.setVisible(true);
+				Thread.sleep(300*1000);
+			}
+			month = 0;
+			date = 0;
+			hour = 0;
+		}
 	}
 
 	// Create the frame.
 	public Mainframe() throws IOException {
-
+		
 		// 전체 프레임
 		super("Mousai");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -175,13 +233,13 @@ public class Mainframe extends JFrame {
 		});
 
 		JCheckBox checkBox = new JCheckBox("\uC644\uB8CC\uD45C\uC2DC");
-		checkBox.setBounds(257, 50, 115, 23);
+		checkBox.setBounds(257, 43, 90, 15);
 		panel_1.add(checkBox);
 
 		
 		// to do 정렬기능 박스
 		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		comboBox_1.setBounds(230, 18, 65, 30);
+		comboBox_1.setBounds(230, 10, 65, 30);
 		comboBox_1.addItem("전체");
 		comboBox_1.addItem("진행중");
 		comboBox_1.addItem("이름");
@@ -357,7 +415,6 @@ public class Mainframe extends JFrame {
 							}
 						}
 						std1 = std1 + "</html>";
-						System.out.println(std1);
 						str1[k] = std1;
 						std1 = "";
 						k++;
@@ -475,7 +532,6 @@ public class Mainframe extends JFrame {
 									}
 								}
 								if (str1[j].charAt(goingindex + 2) == '완') {
-									System.out.println(str1[j]);
 									str1[j] = str1[j].replaceFirst("a", " ");
 									str2[counter] = str1[j];
 									counter++;
@@ -578,6 +634,22 @@ public class Mainframe extends JFrame {
 								}
 							}
 						});
+					         conttd.addMouseListener(new MyMouseListener(){
+						       	  public void mouseClicked(MouseEvent e){
+						    		  if(e.getClickCount() == 2){
+						    	           DelToDo DT = null;
+						    	            try {
+						    					DT = new DelToDo(conttd.getText());
+						    				} catch (IOException e1) {
+						    					// TODO Auto-generated catch block
+						    					e1.printStackTrace();
+						    				}
+						    	            DT.setVisible(true);
+						    	    		dispose();
+						    		  }
+
+						    	  }
+						         });
 						panel_4.add(conttd);
 					}
 				} catch (IOException e1) {
@@ -585,7 +657,7 @@ public class Mainframe extends JFrame {
 				}
 			}
 		});
-		btnSort.setBounds(303, 18, 70, 30);
+		btnSort.setBounds(303, 10, 70, 30);
 		panel_1.add(btnSort);
 
 		// 과목 길어질 때 스크롤 추가

@@ -69,7 +69,8 @@ public class RandomResult extends JFrame {
 			
 			
 			Calendar random = Calendar.getInstance();
-			ran = (random.get(Calendar.SECOND)%count)+1;
+			int sec = random.get(Calendar.SECOND);
+			ran = (sec % count)+1;
 		
 			File data1 = new File("datatd.dt");
 			BufferedReader in1 = new BufferedReader(new FileReader(data));
@@ -107,7 +108,8 @@ public class RandomResult extends JFrame {
 				}
 				
 				JLabel tolabel = new JLabel(s1);
-				tolabel.setBounds(0, 99, 457, 336);
+				tolabel.setBounds(0, 100, 457, 336);
+				tolabel.setFont(new Font("맑은 고딕", Font.BOLD, 70));
 				lblNewLabel.add(tolabel);
 				break;
 			}

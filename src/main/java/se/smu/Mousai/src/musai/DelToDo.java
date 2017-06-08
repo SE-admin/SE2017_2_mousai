@@ -29,13 +29,28 @@ public class DelToDo extends JFrame {
 	}
 
 	public DelToDo() {
-
-		
 	}
 
 	// Create the frame.
 	public DelToDo(String conttd) throws IOException {
 
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		 this.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e) { 
+           	 try {
+						Mainframe ma = new Mainframe();
+						ma.setVisible(true);
+						dispose();
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+            }
+		 });
+		
+		
+		
+		
 		///////////////////////////////////// 할일 추가창 전체 프레임
 		setBounds(100, 100, 435, 575);
 		contentPane = new JPanel();
@@ -276,21 +291,6 @@ public class DelToDo extends JFrame {
 		label_6.setBounds(186, 406, 96, 32);
 		contentPane.add(label_6);
 
-		// 중요도 별 표시 => 수정 필요
-		// JLabel lblNewLabel = new JLabel("\u2606");
-		// lblNewLabel.setFont(new Font("굴림", Font.PLAIN, 22));
-		// lblNewLabel.setBounds(316, 409, 30, 29);
-		// contentPane.add(lblNewLabel);
-		//
-		// JLabel label_7 = new JLabel("\u2606");
-		// label_7.setFont(new Font("굴림", Font.PLAIN, 22));
-		// label_7.setBounds(284, 409, 30, 29);
-		// contentPane.add(label_7);
-		//
-		// JLabel label_8 = new JLabel("\u2606");
-		// label_8.setFont(new Font("굴림", Font.PLAIN, 22));
-		// label_8.setBounds(347, 409, 30, 29);
-		// contentPane.add(label_8);
 
 		// 확인 버튼
 		JButton button = new JButton();
@@ -311,12 +311,22 @@ public class DelToDo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String[] map2 = new String[1000];
 				String[] map3 = new String[1000];
+				String[] time = new String[1000];
+				String temp = "";
+				String conttdtemp = "";
 				BufferedReader bw = null;
+				FileWriter al = null;
 				FileWriter fw = null;
+				
 				
 				try {
 					bw = new BufferedReader(new FileReader("datatd.dt"));
 					int i = 0;
+					int tempindex = 0;
+					int timeindex = 0;
+					int conttdtempindex = 0;
+					
+					
 					
 					while ((map2[i] = bw.readLine()) != null) {
 						map3[i]="";
@@ -329,24 +339,67 @@ public class DelToDo extends JFrame {
 						map3[i]=map3[i] + "</html>";
 						
 						
-						
-						
-						
-						
 						map3[i] = map3[i].replaceAll(" ", "");
-								
-								
-								
-								
-								
-								
-								
+						
+						
+						
+						tempindex = map3[i].toString().indexOf("알림시간");
+						if(tempindex!=-1){
+							for(int tt = tempindex+5; !(map3[i].charAt(tt)==':'&&map3[i].charAt(tt+1)==':');tt++){
+								temp = temp+map3[i].charAt(tt);
+							}
+							temp = temp.replaceAll("월", "\t");
+							temp = temp.replaceAll("일", "\t");
+							temp = temp.replaceAll("시", "\t");
+							time[timeindex] = temp;
+							timeindex++;
+							temp="";
+						}
+						
+						
 						i++;
 					}
+					
 					bw.close();
+					
+					
+					
+					conttdtempindex = conttd.toString().indexOf("알림시간");
+					if(conttdtempindex!=-1){
+						for(int tt = conttdtempindex+5; !(conttd.charAt(tt)==':'&&conttd.charAt(tt+1)==':');tt++){
+							conttdtemp = conttdtemp+conttd.charAt(tt);
+						}
+						conttdtemp = conttdtemp.replaceAll("월", "\t");
+						conttdtemp = conttdtemp.replaceAll("일", "\t");
+						conttdtemp = conttdtemp.replaceAll("시", "\t");
+					}
+					
+					
+					
+					
+					
+					
+					
+					
+					for(int j=0;j<timeindex;j++){
+						if(conttdtemp.equals(time[j])){
+							time[j]="";
+						}
+					}
+					al = new FileWriter("alarmtime.dt");
+					al.flush();
+					for(int j=0; j<timeindex;j++){
+						if(!("".equals(time[j]))){
+							al.write(time[j]+"\n");
+						}
+					}
+					al.flush();
+					al.close();
+					
 					for (int j = 0; j < i; j++) {
 						if (conttd.equals(map3[j])) {
 							map2[j] = "";
+							
 						}
 					}
 					fw = new FileWriter("datatd.dt");
@@ -358,6 +411,7 @@ public class DelToDo extends JFrame {
 					}
 					fw.flush();
 					fw.close();
+					
 				} catch (IOException c) {
 					c.printStackTrace();
 				} finally {
@@ -367,18 +421,13 @@ public class DelToDo extends JFrame {
 						} catch (IOException s) {
 						}
 				}
-//				try {
-//					Mainframe ma = new Mainframe();
-//					ma.setVisible(true);
-//				} catch (IOException q) {
-//					// TODO Auto-generated catch block
-//					q.printStackTrace();
-//				}
-				dispose();
+				//dispose();
 			
 				int count = 0;
 				try {
 					File data = new File("datatd.dt");
+					File alarm = new File("alarmtime.dt");
+					FileWriter fw1 = new FileWriter(alarm,true);
 					FileWriter fw2 = new FileWriter(data, true);
 					if (!(textField_1.getText().equals(""))) {
 						fw2.write(" <html>");
@@ -415,20 +464,23 @@ public class DelToDo extends JFrame {
 						fw2.write(comboBox_8.getSelectedItem().toString());
 						fw2.write("시<br>");
 					}
-					if (count == 1) {
+					if (comboBox_5.getSelectedItem().toString().equals("0")&&comboBox_6.getSelectedItem().toString().equals("0")) {
 						fw2.write("알림 꺼짐::");
 					} else {
 						if (count == 1) {
 							fw2.write("알림 시간 : ");
 							fw2.write(comboBox_5.getSelectedItem().toString());
+							fw1.write(comboBox_5.getSelectedItem().toString()+"\t");
 						}
 						if (count == 1) {
 							fw2.write("월 ");
 							fw2.write(comboBox_6.getSelectedItem().toString());
+							fw1.write(comboBox_6.getSelectedItem().toString()+"\t");
 						}
 						if (count == 1) {
 							fw2.write("일 ");
 							fw2.write(comboBox_9.getSelectedItem().toString());
+							fw1.write(comboBox_9.getSelectedItem().toString()+"\n");
 							fw2.write("시::");
 						}
 					}
@@ -448,6 +500,7 @@ public class DelToDo extends JFrame {
 						fw2.write("</html>");
 						fw2.write("\n");
 						fw2.flush();
+						fw1.flush();
 					}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -461,11 +514,12 @@ public class DelToDo extends JFrame {
 					try {
 						Mainframe ma = new Mainframe();
 						ma.setVisible(true);
+						dispose();// 창닫기
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					dispose();// 창닫기
+					
 				}
 			}
 		});
@@ -512,21 +566,6 @@ public class DelToDo extends JFrame {
 		
 		
 		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-//		
 
 		JButton delbutton_1 = new JButton("");
 		delbutton_1.addActionListener(new ActionListener() {
